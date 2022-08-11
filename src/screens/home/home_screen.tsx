@@ -1,9 +1,8 @@
-import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {ParamListBase} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
-import {Button, Text, View} from 'react-native';
-import {CreateContactScreenNavigationProp} from '../create_contact/create_contact_screen';
-import {UpdateContactScreenNavigationProp} from '../update_contact/update_contact_screen';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {ContactList} from './components';
 
 export type HomeScreenNavigationProp = NativeStackNavigationProp<
   ParamListBase,
@@ -11,21 +10,9 @@ export type HomeScreenNavigationProp = NativeStackNavigationProp<
 >;
 
 export function HomeScreen() {
-  const navigation = useNavigation<
-    CreateContactScreenNavigationProp | UpdateContactScreenNavigationProp
-  >();
-
   return (
-    <View>
-      <Text>Home</Text>
-      <Button
-        title="Create Contact"
-        onPress={() => navigation.push('CreateContact')}
-      />
-      <Button
-        title="Edit Contact"
-        onPress={() => navigation.push('UpdateContact')}
-      />
-    </View>
+    <SafeAreaView>
+      <ContactList />
+    </SafeAreaView>
   );
 }

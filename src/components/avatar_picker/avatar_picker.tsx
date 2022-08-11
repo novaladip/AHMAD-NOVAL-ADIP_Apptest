@@ -29,9 +29,11 @@ interface Props {
   currentAvartarUrl?: string;
   onAvatarPicked: (avatarUrl: string | undefined) => void;
   error?: string;
+  testId?: string;
 }
 
 export function AvatarPicker({
+  testId,
   currentAvartarUrl,
   onAvatarPicked,
   error,
@@ -48,10 +50,12 @@ export function AvatarPicker({
   return (
     <View style={styles.container}>
       <TouchableOpacity
+        testID={testId}
         style={styles.avatarContainer}
         onPress={handleSelectImage}>
         {currentAvartarUrl ? (
           <Image
+            testID="avatar_picker_preview"
             source={{uri: currentAvartarUrl}}
             style={styles.avatarContainer}
           />

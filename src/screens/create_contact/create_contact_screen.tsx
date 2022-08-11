@@ -15,6 +15,9 @@ import {useFormik} from 'formik';
 import {Contact} from '../../models';
 import {uploadImageService, useCreateContactMutation} from '../../services';
 
+const defaultAvatar =
+  'https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png';
+
 export type CreateContactScreenNavigationProp = NativeStackNavigationProp<
   ParamListBase,
   'CreateContactScreen'
@@ -32,8 +35,7 @@ export function CreateContactScreen() {
       age: 0,
       firstName: '',
       lastName: '',
-      photo:
-        'https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png',
+      photo: defaultAvatar,
     },
     validationSchema: yup.object().shape({
       photo: yup.string().required('Photo is required'),
@@ -47,14 +49,19 @@ export function CreateContactScreen() {
     }),
     onSubmit: async v => {
       try {
+        let photo = v.photo;
         setIsUploading(true);
-        const {secure_url} = await uploadImageService(v.photo);
-        setIsUploading(false);
+        if (photo !== defaultAvatar) {
+          const {secure_url} = await uploadImageService(v.photo);
+          photo = secure_url;
+          setIsUploading(false);
+        }
         await createContact({
           ...v,
-          photo: secure_url,
+          photo,
         });
       } catch (e) {
+        console.log('errrrrroo');
         setIsUploading(false);
       }
     },
@@ -71,23 +78,27 @@ export function CreateContactScreen() {
       <Header title="Create a new contact" />
       <View style={styles.container}>
         <AvatarPicker
+          testId="avatar_picker"
           currentAvartarUrl={values.photo}
           onAvatarPicked={v => setFieldValue('photo', v)}
           error={errors.photo}
         />
         <MainTextInput
+          testId="first_name_input"
           label="First Name"
           value={values.firstName}
           error={errors.firstName}
           onChangeText={v => setFieldValue('firstName', v)}
         />
         <MainTextInput
+          testId="last_name_input"
           label="Last name"
           value={values.lastName}
           onChangeText={v => setFieldValue('lastName', v)}
           error={errors.lastName}
         />
         <MainTextInput
+          testId="age_input"
           label="Age"
           value={`${values.age}`}
           error={errors.age}
@@ -100,6 +111,7 @@ export function CreateContactScreen() {
           }}
         />
         <MainButton
+          testId="submit_button"
           label="Submit"
           isLoading={isUploading || isLoading}
           onPress={handleSubmit}

@@ -30,6 +30,7 @@ interface Props {
   onChangeText: (text: string) => void;
   label: string;
   error?: string;
+  testId?: string;
 }
 
 export function MainTextInput(props: Props) {
@@ -37,6 +38,7 @@ export function MainTextInput(props: Props) {
     <View style={styles.container}>
       <Text style={styles.label}>{props.label}</Text>
       <TextInput
+        testID={props.testId}
         style={styles.input}
         value={props.value}
         onChangeText={props.onChangeText}

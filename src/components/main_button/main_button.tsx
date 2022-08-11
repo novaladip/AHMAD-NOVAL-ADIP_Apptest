@@ -6,9 +6,10 @@ interface Props {
   label: string;
   isLoading: boolean;
   onPress: () => void;
+  testId?: string;
 }
 
-export function MainButton({label, isLoading, onPress}: Props) {
+export function MainButton({testId, label, isLoading, onPress}: Props) {
   const handleOnPress = useCallback(() => {
     if (isLoading) {
       return;
@@ -18,7 +19,10 @@ export function MainButton({label, isLoading, onPress}: Props) {
   }, [isLoading, onPress]);
 
   return (
-    <TouchableOpacity style={styles.container} onPress={handleOnPress}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={handleOnPress}
+      testID={testId}>
       <Text style={styles.text}>
         {label} {isLoading && '...'}
       </Text>

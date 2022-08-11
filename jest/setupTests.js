@@ -2,6 +2,7 @@ import AbortController from 'abort-controller';
 import {fetch, Headers, Request, Response} from 'cross-fetch';
 import {jest} from '@jest/globals';
 import {NativeModules} from 'react-native';
+import {server} from '../mocks/handlers';
 
 global.fetch = fetch;
 global.Headers = Headers;

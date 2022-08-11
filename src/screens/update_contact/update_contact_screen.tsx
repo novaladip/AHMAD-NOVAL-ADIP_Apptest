@@ -92,6 +92,7 @@ export function UpdateContactScreen() {
       <Header title={`${contact.firstName} ${contact.lastName}`} />
       <View style={styles.container}>
         <AvatarPicker
+          testId="avatar_picker"
           currentAvartarUrl={values.photo}
           onAvatarPicked={v => {
             setFieldValue('photo', v);
@@ -100,18 +101,21 @@ export function UpdateContactScreen() {
           error={errors.photo}
         />
         <MainTextInput
+          testId="first_name_input"
           label="First Name"
           value={values.firstName}
           onChangeText={v => setFieldValue('firstName', v)}
           error={errors.firstName}
         />
         <MainTextInput
+          testId="last_name_input"
           label="Last name"
           value={values.lastName}
           onChangeText={v => setFieldValue('lastName', v)}
           error={errors.lastName}
         />
         <MainTextInput
+          testId="age_input"
           label="Age"
           value={values.age.toString()}
           onChangeText={v => {
@@ -123,6 +127,7 @@ export function UpdateContactScreen() {
           }}
         />
         <MainButton
+          testId="update_contact_button"
           label="Update"
           isLoading={isUploading || isLoading}
           onPress={handleSubmit}

@@ -1,33 +1,30 @@
 import React from 'react';
 import {fireEvent, render, screen} from '@testing-library/react-native';
 import App from '../../App';
-import {
-  mockContactsResponse,
-  serverFetchContactsFailure,
-  serverFetchContactsSuccess,
-} from '../../../mocks/handlers';
+import {mockContactsResponse, server} from '../../../mocks/handlers';
 
 describe('[HomeScreen]', () => {
+  beforeAll(() => {
+    server.listen();
+  });
+
+  afterEach(() => {
+    server.resetHandlers();
+  });
+
+  afterAll(() => {
+    server.close();
+  });
+
   const component = <App initialRouteName="Home" />;
   test('renders correctly when fetchContacts is success', async () => {
-    beforeAll(() => {
-      serverFetchContactsSuccess.listen();
-    });
-
-    afterEach(() => {
-      serverFetchContactsSuccess.resetHandlers();
-    });
-
-    afterAll(() => {
-      serverFetchContactsSuccess.close();
-    });
-
     render(component);
 
     expect(screen.findByTestId('contact_list_loading')).toBeDefined();
 
+    await new Promise(r => setTimeout(r, 1000)); // wait until fetchContacts is done
+
     // find title i.e Your Contact (5)
-    await new Promise(r => setTimeout(r, 100)); // wait until fetchContacts is done
     const title = await screen.findByText(
       `Your Contact (${mockContactsResponse.data.length})`,
     );
@@ -65,18 +62,6 @@ describe('[HomeScreen]', () => {
   });
 
   test('should able to navigate CreateContactScreen', async () => {
-    beforeAll(() => {
-      serverFetchContactsSuccess.listen();
-    });
-
-    afterEach(() => {
-      serverFetchContactsSuccess.resetHandlers();
-    });
-
-    afterAll(() => {
-      serverFetchContactsSuccess.close();
-    });
-
     render(component);
     const createContactButton = await screen.findByTestId(
       'create_contact_button_navigation',
@@ -90,35 +75,11 @@ describe('[HomeScreen]', () => {
   });
 
   test('should render ContactListLoading while fetching fetchContacts', async () => {
-    beforeAll(() => {
-      serverFetchContactsSuccess.listen();
-    });
-
-    afterEach(() => {
-      serverFetchContactsSuccess.resetHandlers();
-    });
-
-    afterAll(() => {
-      serverFetchContactsSuccess.close();
-    });
-
     render(component);
     expect(screen.findByTestId('contact_list_loading')).toBeDefined();
   });
 
   test('should render CommonError when failed to fetchContacts', async () => {
-    beforeAll(() => {
-      serverFetchContactsFailure.listen();
-    });
-
-    afterEach(() => {
-      serverFetchContactsFailure.resetHandlers();
-    });
-
-    afterAll(() => {
-      serverFetchContactsFailure.close();
-    });
-
     render(component);
     await new Promise(r => setTimeout(r, 100)); // wait until fetchContacts is done
     expect(screen.findByTestId('common_error')).toBeDefined();

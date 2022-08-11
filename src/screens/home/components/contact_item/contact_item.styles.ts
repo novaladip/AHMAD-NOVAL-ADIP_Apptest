@@ -41,6 +41,7 @@ export const styles = StyleSheet.create({
   },
   fullName: {
     fontWeight: 'bold',
+    color: '#32264d',
   },
   spacer: {
     width: 10,

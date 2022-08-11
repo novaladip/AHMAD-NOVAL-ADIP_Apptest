@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     marginBottom: 5,
+    color: '#32264d',
   },
   input: {
     borderBottomColor: '#ccc',

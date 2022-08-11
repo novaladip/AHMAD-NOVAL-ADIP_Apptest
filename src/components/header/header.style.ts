@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingLeft: 5,
     paddingRight: 15,
-    paddingTop: Platform.OS === 'ios' ? 50 : 0,
+    paddingTop: Platform.OS === 'ios' ? 50 : 20,
   },
   title: {
     fontSize: 20,

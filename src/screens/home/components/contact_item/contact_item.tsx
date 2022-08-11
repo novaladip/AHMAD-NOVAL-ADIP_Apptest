@@ -1,6 +1,12 @@
 import React from 'react';
 
-import {TouchableOpacity, Text, Image, View} from 'react-native';
+import {
+  TouchableOpacity,
+  Text,
+  Image,
+  View,
+  ActivityIndicator,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 import {styles} from './contact_item.styles';
@@ -14,7 +20,7 @@ export const ContactItem = ({contact}: {contact: Contact}) => {
   const [deleteContactById, {isLoading}] = useDeleteContactByIdMutation();
 
   if (isLoading) {
-    return <Text>Loading...</Text>;
+    return <ActivityIndicator size="small" />;
   }
 
   return (
@@ -54,7 +60,7 @@ export const ContactItem = ({contact}: {contact: Contact}) => {
               contact,
             })
           }>
-          <Icon name="edit" size={30} />
+          <Icon name="edit" size={30} color="#32264d" />
         </TouchableOpacity>
         <View style={styles.spacer} />
         <TouchableOpacity>
@@ -62,6 +68,7 @@ export const ContactItem = ({contact}: {contact: Contact}) => {
             name="delete"
             size={30}
             onPress={() => deleteContactById(contact.id)}
+            color="#32264d"
           />
         </TouchableOpacity>
       </View>

@@ -21,7 +21,7 @@ export const ContactList = () => {
         <TouchableOpacity
           onPress={() => navigation.push('CreateContact')}
           testID="create_contact_button_navigation">
-          <Icon name="plussquareo" size={30} />
+          <Icon name="plussquareo" size={30} color="#32264d" />
         </TouchableOpacity>
       </View>
 

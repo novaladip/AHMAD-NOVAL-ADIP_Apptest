@@ -14,4 +14,9 @@ export const styles = StyleSheet.create({
   headerTextBold: {
     fontWeight: 'bold',
   },
+  error: {
+    color: 'red',
+    fontSize: 12,
+    marginTop: 5,
+  },
 });

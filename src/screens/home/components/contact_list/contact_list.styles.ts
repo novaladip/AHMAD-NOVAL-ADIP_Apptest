@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     marginBottom: 20,
+    paddingTop: 10,
   },
   title: {
     fontSize: 20,

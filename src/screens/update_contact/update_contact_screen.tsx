@@ -132,7 +132,11 @@ export function UpdateContactScreen() {
           isLoading={isUploading || isLoading}
           onPress={handleSubmit}
         />
-        {isError && <Text>Something wen't wrong, please try again</Text>}
+        {isError && (
+          <Text style={styles.error}>
+            Something wen't wrong, please try again
+          </Text>
+        )}
       </View>
       <LoadingOverlahy show={isUploading || isLoading} />
     </View>

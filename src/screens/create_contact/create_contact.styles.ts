@@ -12,4 +12,9 @@ export const styles = StyleSheet.create({
     color: '#000',
     marginBottom: 20,
   },
+  error: {
+    color: 'red',
+    fontSize: 12,
+    marginTop: 5,
+  },
 });

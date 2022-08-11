@@ -15,7 +15,7 @@ export function Header({title}: Props) {
     <View style={styles.container}>
       {canGoBack() && (
         <TouchableOpacity onPress={goBack}>
-          <Icon name="chevron-thin-left" size={30} />
+          <Icon name="chevron-thin-left" size={30} color="#000" />
         </TouchableOpacity>
       )}
 

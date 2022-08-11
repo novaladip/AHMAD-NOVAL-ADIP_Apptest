@@ -116,7 +116,7 @@ export function CreateContactScreen() {
           isLoading={isUploading || isLoading}
           onPress={handleSubmit}
         />
-        {isError && <Text>{'Something went wrong'}</Text>}
+        {isError && <Text style={styles.error}>{'Something went wrong'}</Text>}
       </View>
     </View>
   );

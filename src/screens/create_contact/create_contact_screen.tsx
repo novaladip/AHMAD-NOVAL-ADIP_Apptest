@@ -67,7 +67,7 @@ export function CreateContactScreen() {
   }, [isSuccess, navigation]);
 
   return (
-    <>
+    <View testID="create_contact_screen">
       <Header title="Create a new contact" />
       <View style={styles.container}>
         <AvatarPicker
@@ -106,6 +106,6 @@ export function CreateContactScreen() {
         />
         {isError && <Text>{'Something went wrong'}</Text>}
       </View>
-    </>
+    </View>
   );
 }

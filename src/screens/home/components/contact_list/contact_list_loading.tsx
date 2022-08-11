@@ -10,8 +10,10 @@ const styles = StyleSheet.create({
 
 export function ContactListLoading() {
   return (
-    <View style={styles.container}>
-      <ContentLoader backgroundColor="#6f706f">
+    <View style={styles.container} testID="contact_list_loading">
+      <ContentLoader
+        backgroundColor="#6f706f"
+        testID="contact_list_loading_loader">
         <Circle cx="30" cy="30" r="30" />
         <Rect x="80" y="15" rx="4" ry="4" width="300" height="13" />
         <Rect x="80" y="35" rx="3" ry="3" width="250" height="10" />

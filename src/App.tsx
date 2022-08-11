@@ -7,11 +7,15 @@ import {store} from './stores/store';
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+interface Props {
+  initialRouteName?: string;
+}
+
+export default function App({initialRouteName}: Props) {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator initialRouteName={initialRouteName || 'Home'}>
           <Stack.Screen
             name="Home"
             component={HomeScreen}

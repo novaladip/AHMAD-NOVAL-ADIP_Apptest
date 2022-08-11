@@ -88,7 +88,7 @@ export function UpdateContactScreen() {
   }, [isSuccess, navigation]);
 
   return (
-    <>
+    <View testID={`update_contact_screen_${contact.id}`}>
       <Header title={`${contact.firstName} ${contact.lastName}`} />
       <View style={styles.container}>
         <AvatarPicker
@@ -130,6 +130,6 @@ export function UpdateContactScreen() {
         {isError && <Text>Something wen't wrong, please try again</Text>}
       </View>
       <LoadingOverlahy show={isUploading || isLoading} />
-    </>
+    </View>
   );
 }

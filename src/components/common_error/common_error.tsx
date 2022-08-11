@@ -11,7 +11,7 @@ interface Props {
 
 export function CommonError({error, retry}: Props) {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="common_error">
       <Icon name="error-outline" size={100} />
       <View style={styles.spacer} />
       <Text style={styles.errorText}>{error}</Text>

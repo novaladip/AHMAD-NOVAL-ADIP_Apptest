@@ -1,4 +1,5 @@
 import {rest} from 'msw';
+import {setupServer} from 'msw/node';
 
 export const mockContactsResponse = {
   message: 'Get contacts',
@@ -21,11 +22,25 @@ export const mockContactsResponse = {
   ],
 };
 
-export const contactsHandler = [
+export const serverFetchContactsSuccess = setupServer(
   rest.get(
     'https://simple-contact-crud.herokuapp.com/contact',
     (req, res, ctx) => {
       return res(ctx.status(200), ctx.json(mockContactsResponse));
     },
   ),
-];
+);
+
+export const serverFetchContactsFailure = setupServer(
+  rest.get(
+    'https://simple-contact-crud.herokuapp.com/contact',
+    (req, res, ctx) => {
+      return res(
+        ctx.status(500),
+        ctx.json({
+          message: 'Internal server error',
+        }),
+      );
+    },
+  ),
+);

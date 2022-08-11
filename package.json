@@ -56,6 +56,9 @@
       "@testing-library/jest-native/extend-expect",
       "./jest/setupTests.js"
     ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-navigation)"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",

@@ -17,8 +17,10 @@ export const ContactList = () => {
   return (
     <View>
       <View style={styles.container}>
-        <Text style={styles.title}>Your Contact ({data?.length || 0} )</Text>
-        <TouchableOpacity onPress={() => navigation.push('CreateContact')}>
+        <Text style={styles.title}>Your Contact ({data?.length || 0})</Text>
+        <TouchableOpacity
+          onPress={() => navigation.push('CreateContact')}
+          testID="create_contact_button_navigation">
           <Icon name="plussquareo" size={30} />
         </TouchableOpacity>
       </View>

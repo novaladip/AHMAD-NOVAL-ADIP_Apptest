@@ -42,12 +42,13 @@ export const ContactItem = ({contact}: {contact: Contact}) => {
 
           <View>
             <Text style={styles.fullName}>
-              {contact.firstName} {contact.lastName}
+              {contact.firstName + ' ' + contact.lastName}
             </Text>
             <Text style={styles.age}>{contact.age} years old</Text>
           </View>
         </View>
         <TouchableOpacity
+          testID={`contact_list_item_update_button_${contact.id}`}
           onPress={() =>
             navigation.push('UpdateContact', {
               contact,
